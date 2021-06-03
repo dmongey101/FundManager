@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@openzeppelin/network": "^0.4.3"
+  }
+}
