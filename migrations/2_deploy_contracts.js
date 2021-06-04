@@ -1,5 +1,5 @@
-var FundingRound = artifacts.require("./FundingRound.sol");
+var Fund = artifacts.require("./Fund.sol");
 
 module.exports = function(deployer) {
-    deployer.deploy(FundingRound, "0xbEe6eC1f14db12DDa953707f118C3fA4C5d92E30", "0xbEe6eC1f14db12DDa953707f118C3fA4C5d92E30", 5);
+    deployer.deploy(Fund, "0xCe0C08a78954b272e6450A40E701233286a1b9a3");
   };

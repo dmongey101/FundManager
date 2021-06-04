@@ -5,9 +5,11 @@ const Web3Info = (props: any) => {
     const { web3Context } = props;
     const { networkId, networkName, accounts, providerName, lib } = web3Context;
 
-    const FundingRound = new lib.eth.Contract(fundingRoundabi, "0x15193182069D52a04a24A6113C891b7d4eA1B838")
+    const FundingRound = new lib.eth.Contract(fundingRoundabi, "0x6c111665Eaa199c43843624476Bf19b951F0A103")
 
     const [balance, setBalance] = useState(0);
+
+    const [managerState, setManager] = useState("");
   
     const getBalance = useCallback(async () => {
       let balance =
@@ -27,6 +29,16 @@ const Web3Info = (props: any) => {
         console.error(e);
       }
     };
+
+    const onChange = (e: any) => {
+        setManager(e.target.value)
+    }
+
+    const submit = useCallback( async (e) => {
+        e.preventDefault()
+        let manager = await FundingRound.methods.addManagers(managerState).call();
+        console.log(manager)
+    }, [FundingRound])
   
     const requestAccess = useCallback(() => requestAuth(web3Context), []);
 
@@ -58,6 +70,11 @@ const Web3Info = (props: any) => {
         </div>
       )}
       <button onClick={withdraw}>Withdraw</button>
+
+      <form onSubmit={submit}>
+          <input type="text" onChange={onChange}/>
+          <button type="submit">Add Manager</button>
+      </form>
     </div>
   );
 }
